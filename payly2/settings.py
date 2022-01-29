@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'auth_service'
+    'auth_service',
+    'landing_page',
 ]
 
 MIDDLEWARE = [
@@ -122,6 +123,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'auth_service/static/'),
+    os.path.join(BASE_DIR, 'landing_page/static/'),
 ]
 
 # Default primary key field type

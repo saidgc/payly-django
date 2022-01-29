@@ -17,8 +17,10 @@ from django.contrib import admin
 from django.urls import path
 
 import auth_service.views as auth
+import landing_page.views as landing_page
 
 urlpatterns = [
+    path('', landing_page.index),
     path('admin/', admin.site.urls),
     path('login/', auth.login),
 ]

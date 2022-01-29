@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payly | La forma más rapida y segura de realizar tus pagos.</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/landing.css' %}">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'images/favicon/site.webmanifest' %}">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-159402886-1');
+    </script>
+
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '293193771886991');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=293193771886991&ev=PageView&noscript=1" /></noscript>
+    <!-- End Facebook Pixel Code -->
+</head>
+
+<body>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="/services">Servicios</a>
+        <a href="/account">Mi cuenta</a>
+    </div>
+    <div id="hero">
+        <div id="navbar">
+            <img src="{% static 'images/payly-negro.png' %}" alt="" height="100%">
+        <div id="menu_buttons">
+            <a class="menus" href="/services">Servicios</a>
+            <a class="menus" href="/account">Mi cuenta</a>
+            <button id="btn_menu" onclick="openNav()">
+                <span>&#9776;</span>
+            </button>
+        </div>
+        </div>
+        <section>
+            <div id="hero_feature">
+                <div class="slide-in-bottom" id="hero_contaier">
+                    <!-- <div class="slide-in-bottom-delay" class="hero_description">
+                        Garantizado 
+                    </div> -->
+                    <a href="/services" style="font-family: inherit;">Ahorra en tus servicios</a>
+                    
+                </div>
+            </div>
+        </section>
+        <section class="slide-in-bottom-delay">
+            <span class="hero_description">
+                Ahorra desde $837.6 al año en el pago de tus servicios*
+                <br>
+                al usar nuestra plataforma.
+                <br>
+                Con la garantía de pago de Payly tendras la <br> confianza de que tu pago será aplicado en menos de
+                48hrs.
+            </span>
+        </section>
+    </div>
+    <div id="services">
+        <section class="flexes movil"  style="justify-content: space-between;">
+            <div class="column">
+                <span style="font-size: 50pt;
+                font-family: 'outline';">
+                    Servicios
+                </span>
+                <span style="font-size: 24pt;
+                font-family: 'Averta';">
+                <br>
+                    Contamos con los principales servicios de México y estamos en constate actualización para ofrcerte
+                    lo mejor.
+                </span>
+            </div>
+            <div class="column flexes movil"
+                style="height: 333px; justify-content: space-evenly; align-items: center; font-size: 20pt; color: rgba(255,255,255,.8); font-family: 'Averta';">
+                <div>
+                    Telmex
+                </div>
+                <div>
+                    Totalplay
+                </div>
+                <div>
+                    y más próximamente
+                </div>
+        </section>
+    </div>
+    <div id="warranty">
+        <section>
+            <span style="font-size: 50pt; font-family: Helvetica; font-weight: bold;">Garantía Payly</span>
+        </section>
+        <section class="flexes movil" style=" justify-content: space-between;">
+            <div class="column flexes"
+                style="height: 400px; justify-content: center; align-items: center;">
+                <img src="{% static 'images/garantia.png' %}" alt="" height="250px">
+            </div>
+            <div class="column flexes" style=" align-items: center; height: 400px;">
+                <span style="font-family: 'Averta'; font-size: 20pt; text-align: right;">Todos tus compras van con
+                    Garantía Payly incluida.
+                    Lo que significa que si tu el pago de tu servicio no se ve reflejado en 48hrs te devolvemos
+                    integramente tu dinero.</span>
+            </div>
+        </section>
+    </div>
+    <div id="paypal">
+        <section>
+            <span style="font-size: 50pt; font-family: Helvetica; font-weight: bold;">Tu dinero siempre seguro</span>
+        </section>
+        <section class="flexes movil" style="margin-top: 20pt;">
+            <div class="column flexes">
+                <span style="font-family: 'Averta'; font-size: 20pt;">Para comodidad de nuestros usuarios solamnete usamos como medio de pago PayPal.</span>
+            </div>
+            <div class="column flexes" style="align-items: center; justify-content: right;">
+                <img src="https://www.paypalobjects.com/marketing/web/mx/logos-buttons/debito.png" alt="Check out with PayPal" width="400pt"/>
+
+            </div>
+        </section>
+    </div>
+</body>
+<footer>
+    <div id="footer_body">
+        <div class="column flexes" style="flex-direction: column; justify-content: space-evenly;">
+            <span style="font-size: 20pt;">
+                ¿Tienes dudas?
+                <br>
+                <a href="mailto:hello@payly.com.mx">hello@payly.com.mx</a>
+            </span>
+            <span style="color: rgba(255,255,255,.6);">
+                Heróica Puebla de Zaragoza,
+                <br>
+                Puebla, México.
+            </span>
+            <span>
+                <a href="https://www.payly.com.mx/privacy.html">Políticas de privacidad</a>
+            </span>
+        </div>
+        <div class="column flexes"
+            style="justify-content: space-evenly; align-items: center; font-size: 18pt; color: rgba(255,255,255,.8);">
+            <a href="">Garantía Payly</a>
+            <a href="https://www.facebook.com/paylymx">Facebook</a>
+            <!-- <a href="">YouTube</a> -->
+        </div>
+    </div>
+    <img src="https://www.paypalobjects.com/marketing/web/mx/logos-buttons/Compra-segura_159x55.jpg" alt="Check out with PayPal" width="100pt" style="border-radius: 42px;"/>
+    
+    <span style="color: white; margin-top: 20pt; font-family: 'Averta';">Made with ❤️ by Payly in 🇲🇽</span>
+
+</footer>
+
+<script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+    }
+</script>
+
+</html>

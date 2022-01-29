@@ -13,8 +13,8 @@ def login(request):
     login_error = False
     login_form = LoginForm()
 
-    # if request.user.is_authenticated:
-    #     return HttpResponseRedirect('/')
+    if request.user.is_authenticated:
+        return HttpResponseRedirect('/')
 
     if request.method == 'POST':
         requested_form = LoginForm(request.POST)
