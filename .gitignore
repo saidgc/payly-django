@@ -112,3 +112,9 @@ GitHub.sublime-settings
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
+
+# macos
+.DS_Store
+
+# firebase json
+payly-e968a-firebase-adminsdk-jcuz3-6bfd6eeb7c.json
