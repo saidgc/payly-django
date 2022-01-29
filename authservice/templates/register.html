@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+    <p style="text-align: center;">
+        <span style="color: red;">{{ try_again }}</span>
+    </p>
+    <p>
+        <span>
+            <label for="email">Correo electrónico</label>
+        </span>
+        {{ form.email(min=6, max=256) }}<br>
+        {% for error in form.email.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        <span>
+            <label for="email">Contraseña</label>
+        </span>
+        {{ form.password(max=32, min=8 ) }}<br>
+        {% for error in form.password.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <span id="password-policy">
+        <ul>
+            <li>8 caracteres mínimo</li>
+            <li>Una mayúscula</li>
+            <li>Una minúscula</li>
+            <li>Un número</li>
+        </ul>
+    </span>
+    <div class="privacy">
+        {{ form.checkbox(onchange="document.getElementById('submit').disabled = !this.checked;") }}
+        <p>
+            Acepto el <a href="https://www.payly.com.mx/privacy.html">Aviso de Privacidad</a> y los <a
+                href="https://www.payly.com.mx/termsofuse.html">Términos y condiciones</a>
+        </p>
+    </div>
+    <p id="sls">{{ form.submit() }}</p>
+    <p style="text-align: center;">
+        ¿Ya tienes cuenta?
+        <a href="/login">Inicia sesión</a>
+    </p>
+</form>
+{% endblock %}

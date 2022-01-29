@@ -1,0 +1,101 @@
+html {
+    font-family: Helvetica, sans-serif;
+}
+
+body, h1, h3 {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 50pt;
+    margin-bottom: 20pt;
+}
+
+#logo {
+    height: 40pt;
+    margin-bottom: 20pt;
+}
+
+#container-center {
+    width: 1170px;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.col {
+    width: 270pt;
+    height: 300pt;
+    padding-right: 20pt;
+    padding-left: 20pt;
+}
+
+input {
+    font-size: 13pt;
+    width: 100%;
+    padding: 10px 8px;
+    border: 1px solid #adb7c4;
+    border-radius: 4px;
+    outline: none;
+    line-height: 1;
+    margin-top: 10pt;
+    margin-bottom: 10pt;
+    box-sizing: border-box;
+}
+
+label {
+    font-size: 13pt;
+    width: 100%;
+}
+
+#checkbox {
+    margin: 0;
+    width: 40px;
+}
+
+.privacy {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-size: 9pt;
+}
+
+a {
+    text-decoration: none;
+    color: #adb7c4;
+}
+
+#sls {
+    display: flex;
+    justify-content: center;
+}
+
+#submit {
+    width: 110pt;
+    border-radius: 100px;
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    height: 32pt;
+    font-weight: 600;
+}
+
+#cuenta {
+
+}
+
+@media (max-width: 600px) {
+    .col {
+        width: 100vw;
+        box-sizing: border-box;
+        height: auto;
+    }
+
+    #container-center {
+        width: auto;
+        flex-direction: column;
+    }
+}

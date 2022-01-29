@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="-1" />
+
+    <title>{{ title }} - payly</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-159402886-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-159402886-1');
+    </script>
+    <!-- Facebook Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '293193771886991');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=293193771886991&ev=PageView&noscript=1" /></noscript>
+    <!-- End Facebook Pixel Code -->
+</head>
+
+<body>
+    <div id="container-center">
+        <div class="col">
+            <a href="/">
+                <img id="logo" src="{% static 'images/payly-negro.png' %}" alt="payly">
+            </a>
+            <h1 style="font-size: 40pt;">{{ title }}</h1>
+            <h3>Te damos la bienvenida a la </h3>
+            <h3>nueva forma de ahorrar</h3>
+        </div>
+        <div class="col">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</body>
+
+</html>

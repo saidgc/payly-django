@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form action="" method="post">
+
+        {% if error %}
+            <p style="text-align: center;">
+                <span style="color: red;">Revisa tu correo y contraseña</span>
+            </p>
+        {% endif %}
+        {% csrf_token %}
+        {{ form }}
+        <p>
+            <a href="/forgot">¿Olvidaste tu contraseña?</a>
+        </p>
+        <p id="sls">
+            <input id="submit" name="submit" type="submit" value="Inicia sesión">
+        </p>
+        <p style="text-align: center;">
+            ¿No tienes cuenta?
+            <a href="/register">Registrate</a>
+        </p>
+    </form>
+{% endblock %}

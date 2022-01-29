@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if form %}
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+    <p style="text-align: center;">
+        <span style="color: red;">{{ try_again }}</span>
+    </p>
+    <p>
+        <span>
+            <label for="email">Correo electrónico</label>
+        </span>
+        {{ form.email(min=6, max=256) }}<br>
+        {% for error in form.email.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+
+    <p id="sls">{{ form.submit() }}</p>
+    <p style="text-align: center;">
+        <a href="/login">Inicia sesión</a>
+    </p>
+</form>
+{% else %}
+<h2 style="text-align: center;">
+    Se ha mandado un correo para restablecer tu contraseña.
+</h2>
+<p style="text-align: center;">
+    <a href="/login">Inicia sesión</a>
+</p>
+{% endif %}
+{% endblock %}
