@@ -4,8 +4,10 @@ from django.contrib import auth
 from ..helpers.settings import firebase
 from django.contrib.auth.models import User
 
+FIREBASE_KEY = 'firebase_user_id'
 
-class FirebaseAuthentication():
+
+class FirebaseAuthentication:
     def __init__(self):
         self.firebase_auth = firebase.auth()
 
@@ -30,4 +32,5 @@ class FirebaseAuthentication():
                     password,
                 )
             auth.login(request, django_user)
+            request.session[FIREBASE_KEY] = firebase_user.get('idToken')
         return True
