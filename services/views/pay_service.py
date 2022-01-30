@@ -1,22 +1,33 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from firebase_db.models.authentication import FIREBASE_KEY
 from firebase_db.models.collections import Collections
 
+def pay_service(request):
+    if request.method != "POST":
+        return HttpResponseRedirect('/')
 
-def index(request):
-    services = Collections().get_all_services()
-    # session['saveForm'] = False
-    # try:
-    #     isAuth = session['idToken']
-    # except:
-    #     isAuth = None
+    is_user_authenticated = None
+    if request.user.is_authenticated:
+        is_user_authenticated = request.session[FIREBASE_KEY]
+
+    service_id = request.POST.get('id', False)
+    if not service_id:
+        return HttpResponseRedirect('/services')
+    service = Collections().get_service(service_id=service_id)
 
     context = {
-        'title': "Inicio",
-        'services': services,
-        'isAuth': None
+        'title': "Pagar " + service['name'],
+        'service': service['name'],
+        'desc': service['desc'],
+        'length': service['length'],
+        'discount': service['discount'],
+        'is_user_authenticated': is_user_authenticated,
+        'type': service['type'],
+        'id': service_id
     }
     return render(
         request=request,
-        template_name='index.html',
+        template_name='pay_service.html',
         context=context,
     )

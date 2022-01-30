@@ -12,7 +12,7 @@
     </style>
     {% load static %}
     <div id="services">
-        {% for service in services %}
+        {% for service_id, service in services.items %}
             <div class="card">
                 {% if service.discount != 0 %}
                     <div class="banner"><p style="margin: 0; font-size: 16pt;">-{{ service.discount }}%</p></div>
@@ -23,7 +23,8 @@
                 {% endif %}
                 <p class="title">{{ service.name }}</p>
                 <form action="/pay" method="post">
-                    <input type="hidden" name="id" value="{{ service.id }}">
+                    {% csrf_token %}
+                    <input type="hidden" name="id" value="{{ service_id }}">
                     <input type="submit" value="Pagar" class="btn">
                 </form>
             </div>

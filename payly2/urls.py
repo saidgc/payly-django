@@ -26,5 +26,5 @@ urlpatterns = [
     path('login/', auth.login_view),
     path('logout/', auth.logout_view),
     path('services/', services.show_all_services),
-
+    path('pay', services.pay_service),
 ]
