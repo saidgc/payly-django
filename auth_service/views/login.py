@@ -1,8 +1,8 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
-import firebase_db.models as firebase_authentication
 from ..forms.login import LoginForm
+from firebase_db.models.authentication import FirebaseAuthentication
 
 
 def login(request):
@@ -18,7 +18,7 @@ def login(request):
         if requested_form.is_valid():
             email = requested_form.cleaned_data['email']
             password = requested_form.cleaned_data['password']
-            if firebase_authentication.login(
+            if FirebaseAuthentication().login(
                     request=request,
                     user=email,  # TODO change email for user real name
                     email=email,
