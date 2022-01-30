@@ -1,5 +1,3 @@
 Django~=3.2.11
 pyrebase4~=4.5.0
 requests~=2.27.1
-expects~=0.9.0
-mamba~=0.11.2

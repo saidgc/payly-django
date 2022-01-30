@@ -1,15 +1,10 @@
-from unittest.mock import Mock
 from http import HTTPStatus
 
 from django.contrib.auth.models import User
 from django.test import TestCase
-from expects import expect
-from mamba import before, context, describe, it
-
-from firebase_db.models.authentication import login
 
 
-class Test(TestCase):
+class TestLogin(TestCase):
 
     def setUp(self):
         self.user = User.objects.create_user(
@@ -28,11 +23,4 @@ class Test(TestCase):
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertTemplateUsed(response, 'landing.html')
 
-    def test_login_function_fails(self):
-        resp = login(
-            request=Mock(),
-            user='fake@mail.com',
-            email='fake@mail.com',
-            password='123asdbASDB',
-        )
-        self.assertFalse(resp)
+

@@ -7,8 +7,6 @@ name = "pypi"
 django = "*"
 firebase-admin = "*"
 Pyrebase = "*"
-mamba = "*"
-expects = "*"
 
 [dev-packages]
 
