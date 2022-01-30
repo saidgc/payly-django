@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 django = "*"
 pyrebase4 = "4.5.0"
+firebase-admin = "*"
+google-cloud-firestore = "*"
 
 [dev-packages]
 

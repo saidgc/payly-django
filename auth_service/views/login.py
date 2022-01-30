@@ -5,7 +5,7 @@ from ..forms.login import LoginForm
 from firebase_db.models.authentication import FirebaseAuthentication
 
 
-def login(request):
+def login_view(request):
     title = 'Inicia sesión'
     login_error = False
     login_form = LoginForm()

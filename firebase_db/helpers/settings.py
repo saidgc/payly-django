@@ -1,4 +1,8 @@
+import firebase_admin
 import pyrebase
+
+# TODO improve this
+default_app = firebase_admin.initialize_app()
 
 config = {
     "apiKey": "AIzaSyBuWVQCJ18DRxkTeashOjwiBEisN_wLsiI",

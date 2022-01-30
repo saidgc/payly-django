@@ -18,9 +18,13 @@ from django.urls import path
 
 import auth_service.views as auth
 import landing_page.views as landing_page
+import services.views as services
 
 urlpatterns = [
     path('', landing_page.index),
     path('admin/', admin.site.urls),
-    path('login/', auth.login),
+    path('login/', auth.login_view),
+    path('logout/', auth.logout_view),
+    path('services/', services.show_all_services),
+
 ]

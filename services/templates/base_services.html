@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <title>{{ title }} - Payly</title>
+    <meta name="description" content="La forma más rápida y segura de realizar tus pagos" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'images/favicon/site.webmanifest' %}">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+<!-- 
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="./script.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/jsbarcode/3.6.0/barcodes/JsBarcode.code128.min.js"></script> -->
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-159402886-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-159402886-1');
+    </script>
+
+    <!-- Facebook Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '293193771886991');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=293193771886991&ev=PageView&noscript=1" /></noscript>
+    <!-- End Facebook Pixel Code -->
+</head>
+
+<body>
+    <div id="banner" onclick="info()">
+        <p style="color: #fff; margin: 0; padding: 0;">Nuevo servicio: Predial Puebla</p>
+    </div>
+    <div id="menu">
+        <a href="/">
+            <div id="logo">
+                <img src="{% static 'images/payly-negro.png' %}" alt="logo" height="100%">
+            </div>
+        </a>
+        <div id="list">
+            <ul>
+                <li id="select">
+                    <a href="/services">Servicios</a></li>
+                <li><a href="/account">Mi cuenta</a></li>
+                <!-- <li><a href="/help">Ayuda</a></li> -->
+                
+            </ul>
+        </div>
+        {% if is_user_authenticated %}
+        <div id="signin-login">
+            <!-- <a href="https://www.facebook.com/paylymx" target="_blank" style="margin-right: 10pt;">
+                <img src="images/facebook.png" alt="logo" height="35pt">
+            </a> -->
+            <a id="login" href="/logout">Cerrar sesión</a>
+        </div>
+        {% else %}
+        <div id="signin-login">
+            <a id="login" href="/login">Ingresar</a>
+            <a id="button-singup" href="/register">
+                Abre tu cuenta
+            </a>
+            <!-- <a href="https://www.facebook.com/paylymx" target="_blank">
+                <img src="images/facebook.png" alt="logo" height="35pt">
+            </a> -->
+        </div>
+        {% endif %}
+
+    </div>
+    <div id="cnt">
+        {% block content %}{% endblock %}
+    </div>
+    <!-- <div id="footer">
+        <p><a href="https://www.payly.com.mx/termsofuse.html">Términos y condiciones</a> <a
+                href="https://www.payly.com.mx/privacy.html">Políticas de privacidad</a></p>
+        <p><a href="https://wa.me/message/LL37BPUFX46WA1">Contactanos por WhatsApp +52 222 652 9384</a></p>
+        <p>©payly 2020</p>
+    </div> -->
+
+    <script>
+        function info() {
+            alert("El descuento se verá aplicado antes de realizar tu pago.");
+        }
+    </script>
+</body>
+
+<footer>
+    <div id="footer_body">
+        <div class="column flexes" style="flex-direction: column; justify-content: space-evenly;">
+            <span style="font-size: 20pt;">
+                <a href="mailto:hello@payly.com.mx">hello@payly.com.mx</a>
+            </span>
+            <span style="color: rgba(255,255,255,.6);">
+                Heróica Puebla de Zaragoza,
+                <br>
+                Puebla, México.
+            </span>
+            <span>
+                <a href="https://www.payly.com.mx/privacy.html">Políticas de privacidad</a>
+            </span>
+        </div>
+        <div class="column flexes"
+            style="justify-content: space-evenly; align-items: center; font-size: 18pt; color: rgba(255,255,255,.8);">
+            <a href="/warranty">Garantía Payly</a>
+            <a href="https://www.facebook.com/paylymx">Facebook</a>
+            <!-- <a href="">YouTube</a> -->
+        </div>
+    </div>
+    <img src="https://www.paypalobjects.com/marketing/web/mx/logos-buttons/Compra-segura_159x55.jpg" alt="Check out with PayPal" width="100pt" style="border-radius: 42px;"/>
+    
+    <span style="color: white; margin-top: 20pt;">Made with ❤️ by Payly in 🇲🇽</span>
+
+</footer>
+
+</html>
