@@ -18,14 +18,10 @@ def pay_service(request):
 
     context = {
         'title': "Pagar " + service['name'],
-        'service': service['name'],
-        'desc': service['desc'],
-        'length': service['length'],
-        'discount': service['discount'],
         'is_user_authenticated': is_user_authenticated,
-        'type': service['type'],
         'id': service_id
     }
+    context.update(service)
     return render(
         request=request,
         template_name='pay_service.html',

@@ -1,4 +1,5 @@
 {% extends "base_services.html" %}
+{% load static %}
 
 {% block content %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -134,12 +135,12 @@
 </style>
 <div id="preview">
     <form action="/pay" method="post">
-        <input id="servicio" type="hidden" name="service" value="{{ service }}">
+        <input id="servicio" type="hidden" name="service" value="{{ name }}">
         <div id="left">
             {% if type != 3 %}
-            <h1>Introduce tu número {{ service }}</h1>
+            <h1>Introduce tu número {{ name }}</h1>
             {% else %}
-            <h1>{{ service }}</h1>
+            <h1>{{ name }}</h1>
             {% endif %}
             <input type="hidden" id="discount_" name="discount" value="{{ discount }}">
             <input type="hidden" id="service_id" name="service_id" value="{{ id }}">
@@ -212,7 +213,7 @@
             <h3>Resumen de pago</h3>
             {% if type != 3 %}
             <div class="row">
-                <p>Monto del recibo {{ service }}</p>
+                <p>Monto del recibo {{ name }}</p>
                 <strong id="amount">$12345</strong>
             </div>
             {% endif %}
@@ -236,10 +237,10 @@
     </form>
 </div>
 {% if type != 3 %}
-<script src="/js/checkAmount.js"></script>
-<!-- <script src="/js/amountCheck.js"></script> -->
+{% comment %}<script src="/js/checkAmount.js"></script>{% endcomment %}
+<script src="{% static '/js/amountCheck.js' %}"></script>
 {% else %}
-<script src="/js/predial.js"></script>
+<script src="{% static '/js/predial.js' %}"></script>
 {% endif %}
 
 <script>
@@ -282,7 +283,7 @@
                 {% endif %}
                     'service_id': '{{ id }}',
                     'amount': $inputAmount.value,
-                    'service': '{{ service }}'
+                    'service': '{{ name }}'
                 }),
                 headers: {
                     'content-type': 'application/json'
