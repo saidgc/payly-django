@@ -10,9 +10,9 @@ def home(request):
 
     is_user_authenticated = request.session[FIREBASE_KEY]
     context = {
-        'title': "Cuenta",
+        'title': 'Cuenta',
         'is_user_authenticated': is_user_authenticated,
-        'admin': False
+        'admin': False,
     }
     return render(
         request=request,

@@ -28,12 +28,13 @@ def login_view(request):
             else:
                 login_error = True
 
+    context = {
+        'form': login_form,
+        'title': title,
+        'error': login_error,
+    }
     return render(
         request=request,
         template_name='login.html',
-        context={
-            'form': login_form,
-            'title': title,
-            'error': login_error,
-        },
+        context=context,
     )
