@@ -118,3 +118,7 @@ GitHub.sublime-settings
 
 # firebase json
 payly-e968a-firebase-adminsdk-jcuz3-6bfd6eeb7c.json
+
+
+# postgres
+.pgpass
