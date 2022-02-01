@@ -11,7 +11,7 @@ def login_view(request):
     login_form = LoginForm()
 
     if request.user.is_authenticated:
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/services')
 
     if request.method == 'POST':
         requested_form = LoginForm(request.POST)
@@ -24,7 +24,7 @@ def login_view(request):
                     email=email,
                     password=password,
             ):
-                return HttpResponseRedirect('/')
+                return HttpResponseRedirect('/services')
             else:
                 login_error = True
 
