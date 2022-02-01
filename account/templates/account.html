@@ -1,11 +1,12 @@
 {% extends "base_services.html" %}
 
 {% block content %}
+    {{ user|pprint }}
     <div id="column">
         <h1 style="font-weight: 400;">Hola</h1>
         <a href="/receipt" class="btn"
            style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">Recibos</a>
-        {% if admin %}
+        {% if user.is_staff %}
             <a href="/admin" class="btn"
                style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">Administrar</a>
             <br>
