@@ -1,16 +1,12 @@
-from django.test import TestCase
-from firebase_db.models.collections import Collections
 import random
 
-class TestCollections(TestCase):
+from django.test import TestCase
 
-    def setUp(self) -> None:
-        self.collections = Collections()
-        self.random_service = random.choice(
-            list(
-                self.collections.get_all_services().keys(),
-            ),
-        )
+from firebase_db.models.collections import Collections
+from tests.base import PrepareTestFirestore
+
+
+class TestCollections(PrepareTestFirestore):
 
     def test_collections_instance(self):
         self.assertIsInstance(self.collections, Collections)
@@ -21,7 +17,7 @@ class TestCollections(TestCase):
 
     def test_get_service(self):
         service = self.collections.get_service(
-            service_id=self.random_service,
+            service_id=self.service_id,
         )
         self.assertIsInstance(service, dict)
 
@@ -30,4 +26,3 @@ class TestCollections(TestCase):
             service_id='',
         )
         self.assertIsInstance(service, dict)
-
