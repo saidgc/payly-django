@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from firebase_db.models.authentication import FIREBASE_KEY
 from firebase_db.models.collections import Collections
 
+
 def pay_service(request):
     if request.method != "POST":
         return HttpResponseRedirect('/')

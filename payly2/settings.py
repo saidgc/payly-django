@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'auth_service',
     'landing_page',
     'services',
+    'account',
 ]
 
 MIDDLEWARE = [
@@ -127,6 +128,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'auth_service/static/'),
     os.path.join(BASE_DIR, 'landing_page/static/'),
     os.path.join(BASE_DIR, 'services/static/'),
+    os.path.join(BASE_DIR, 'account/static/'),
 ]
 
 # Default primary key field type
