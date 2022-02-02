@@ -1,0 +1,127 @@
+{% extends "base_services.html" %}
+{% block content %}
+    <style>
+        h2,
+        h3,
+        h4,
+        h5,
+        p {
+            margin: 0;
+            letter-spacing: 0.04em;
+        }
+
+        .container {
+            display: flex;
+            width: 350px;
+            color: #464646;
+            height: 200px;
+            flex-direction: column;
+            justify-content: space-evenly;
+
+        }
+
+        .receipt {
+            width: 300px;
+            height: 60px;
+            margin: 10pt;
+            border-radius: 5pt;
+            box-shadow: 0px 20px 20px 5px rgba(158, 158, 158, 0.5);
+            max-width: 350px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+
+        .details {
+            display: flex;
+            align-items: center;
+        }
+
+        .description_logo {
+            border-radius: 1000px;
+            height: 45px;
+            width: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 8px 10px 1px rgba(158, 158, 158, 0.5);
+        }
+    </style>
+    <div id="caputre">
+        <h1 style="text-align: center;">Recibos</h1>
+        {% if receipts %}
+            {% for receipt in receipts %}
+                <div class="container">
+                    <div class="details">
+                        <div class="description_logo">
+                            {% if receipt['payment_data']['service_id'] == "RUoEXxafeYnxnjSXg73J" %}
+                                <img src="images/puebla.svg" alt="" width="30px"
+                                     height="30px">
+                            {% else %}
+                                <img src="images/{{ receipt['payment_data']['service'].lower() }}.svg" alt=""
+                                     width="30px"
+                                     height="30px">
+                            {% endif %}
+                        </div>
+                        <div style="display: flex; flex-direction: column; align-items: start; margin-left: 20px;">
+                            <h3>{{ receipt['payment_data']['service'] }} {{ receipt['payment_data']['number'] }}</h3>
+                            <h4 style="color: #B0B0B0;">{{ receipt['payment_date'].strftime("%d %b %-I:%M %p") }}</h4>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <!-- <div style="width: 4px; height: 100px; background-color: #B0B0B0; margin-left: 20px;"></div> -->
+                        <div style="display: flex; align-items: center; flex-direction: column;">
+                            <div class="receipt">
+                                <div style="flex-direction: column; display: flex; justify-content: center;">
+                                    <h2 style="margin-left: 20px;">${{ receipt['payment_data']['amount'] }}</h2>
+                                    <h5 style="margin-left: 20px; font-size: 9pt; color: #B0B0B0;">Via
+                                        {{ receipt['payment_method'] }}</h5>
+                                </div>
+                                {% if receipt['problem'] %}
+                                    <h5 style="text-align: center;">Contactanos ventas@payly.com.mx</h5>
+                                    <img src="images/alert.svg" alt="" height="50%" style="margin-right: 30px;">
+                                {% else %}
+                                    {% if receipt['completed'] %}
+                                        <h5 style="margin: 0 20px;">Autorización {{ receipt['authorization'] }}</h5>
+                                        <img src="images/success.svg" alt="" height="50%" style="margin-right: 30px;">
+                                    {% elif receipt['payment_completed'] %}
+                                        <img src="images/waiting.svg" alt="" height="50%" style="margin-right: 30px;">
+                                    {% else %}
+                                        <img src="images/error.svg" alt="" height="50%" style="margin-right: 30px;">
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                            <div style="width: 400px; height: 2px; background-color: #E8E4E4; margin-top: 20px;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- {% if receipt['completed'] %}
+    <div class="receipt">
+        <h3>{{ receipt['payment_data']['service'] }} {{ receipt['payment_data']['number'] }}
+            ${{ receipt['payment_data']['amount'] }}</h3>
+        <h4>{{ receipt['payment_date'].strftime("%m/%d/%Y %-I:%M %p") }}</h4>
+        <h5>Autorización {{ receipt['authorization'] }}</h5>
+    </div>
+    {% elif receipt['payment_completed'] %}
+    <div class="receipt" style="background-color: #FFD300; color: #A78A00;">
+        <h3>{{ receipt['payment_data']['service'] }} {{ receipt['payment_data']['number'] }}
+            ${{ receipt['payment_data']['amount'] }}</h3>
+        <h4>{{ receipt['payment_date'].strftime("%m/%d/%Y %-I:%M %p") }}</h4>
+        <h5>Autorización pendiente</h5>
+    </div>
+    {% else %}
+    <div class="receipt" style="background-color: #FF2300; color: #A71700;">
+        <h3>{{ receipt['payment_data']['service'] }} {{ receipt['payment_data']['number'] }}
+            ${{ receipt['payment_data']['amount'] }}</h3>
+        <h4>{{ receipt['payment_date'].strftime("%m/%d/%Y %-I:%M %p") }}</h4>
+        <h5>Pago fallido</h5>
+    </div>
+    {% endif %} -->
+            {% endfor %}
+        {% else %}
+            <h2>No tienes ningún recibo</h2>
+        {% endif %}
+    </div>
+{% endblock %}

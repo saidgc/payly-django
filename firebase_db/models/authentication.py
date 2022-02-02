@@ -5,9 +5,6 @@ from django.core.handlers.wsgi import WSGIRequest
 from ..helpers.settings import firebase
 from account.models import PaylyUser as User
 
-FIREBASE_KEY = 'firebase_user_id'
-
-
 class FirebaseAuthentication:
     def __init__(self) -> None:
         self.firebase_auth = firebase.auth()
@@ -32,6 +29,7 @@ class FirebaseAuthentication:
                     email=firebase_user['email'],
                     password=password,
                 )
+                django_user.firebase_user_id = firebase_user.get('localId')
+                django_user.save()
             auth.login(request, django_user)
-            request.session[FIREBASE_KEY] = firebase_user.get('idToken')
         return True

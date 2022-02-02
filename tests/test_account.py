@@ -4,7 +4,6 @@ from django.contrib.auth import SESSION_KEY
 from django.test import TestCase
 from faker import Faker
 
-from firebase_db.models.authentication import FIREBASE_KEY
 from .base import PrepareTestUser
 
 fake = Faker()
@@ -25,7 +24,6 @@ class TestAccountLoggedUser(PrepareTestUser):
             password=self.password,
         )
         session = self.client.session
-        session[FIREBASE_KEY] = self.firestore_fake_id
         session.save()
 
     def test_view_account_with_login(self):

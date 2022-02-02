@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from firebase_db.models.authentication import FIREBASE_KEY
-from firebase_db.models.collections import Collections
+from firebase_db.models.collections import Service
 
 
 def pay_service(request):
@@ -11,7 +10,7 @@ def pay_service(request):
     service_id = request.POST.get('id', False)
     if not service_id:
         return HttpResponseRedirect('/services')
-    service = Collections().get_service(service_id=service_id)
+    service = Service().get_service(service_id=service_id)
 
     context = {
         'title': "Pagar " + service['name'],

@@ -4,7 +4,7 @@ from account.models import PaylyUser as User
 from django.test import TestCase
 from faker import Faker
 
-from firebase_db.models.collections import Collections
+from firebase_db.models.collections import Service, Payment
 
 fake = Faker()
 
@@ -12,7 +12,6 @@ fake = Faker()
 class PrepareTestUser(TestCase):
     password = None
     user_name = None
-    firestore_fake_id = fake.uuid4()
 
     @classmethod
     def setUpTestData(cls):
@@ -21,16 +20,19 @@ class PrepareTestUser(TestCase):
         cls.user = User.objects.create_user(
             username=cls.user_name,
             password=cls.password,
+            firebase_user_id=fake.uuid4(),
         )
 
 
 class PrepareTestFirestore(TestCase):
-    collections = Collections()
+    services = Service()
+    payments = Payment()
+    customer_id = 'nPzc4Bq38VNSLuKSJ7GXZhss1vg2'
 
     @classmethod
     def setUpTestData(cls):
         cls.service_id = choice(
             list(
-                cls.collections.get_all_services().keys(),
+                cls.services.get_all_services().keys(),
             ),
         )

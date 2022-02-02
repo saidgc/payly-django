@@ -4,7 +4,6 @@ from django.contrib.auth import SESSION_KEY
 from django.test import TestCase
 from faker import Faker
 
-from firebase_db.models.authentication import FIREBASE_KEY
 from tests.base import PrepareTestUser
 
 fake = Faker()
@@ -26,12 +25,10 @@ class TestLogout(PrepareTestUser):
             password=self.password,
         )
         session = self.client.session
-        session[FIREBASE_KEY] = self.firestore_fake_id
         session.save()
 
     def test_view_logout_with_logged_user(self):
         response = self.client.get('/logout', follow=True)
         self.assertNotIn(SESSION_KEY, self.client.session)
-        self.assertNotIn(FIREBASE_KEY, self.client.session)
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertTemplateUsed(response, 'index.html')
