@@ -1,21 +1,32 @@
 {% extends "base_services.html" %}
 
 {% block content %}
-    {{ user|pprint }}
     <div id="column">
-        <h1 style="font-weight: 400;">Hola</h1>
+        <h1 style="font-weight: 400;">Hola {{ user.first_name }}</h1>
         <a href="/receipt" class="btn"
-           style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">Recibos</a>
-        {% if user.is_staff %}
-            <a href="/admin" class="btn"
-               style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">Pagos</a>
+           style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">Mis recibos</a>
+        {% if user.is_collaborator or user.is_superuser %}
             <br>
+            <a href="/collaborator/pay/telmex" class="btn"
+               style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">Pagar telmex de cliente</a>
+            <a href="/collaborator/receipts" class="btn"
+               style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">Recibos de cliente</a>
+            <a href="/collaborator/due" class="btn"
+               style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">Saldo por cubrir</a>
+            <a href="/collaborator/payout" class="btn"
+               style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">Mis pagos</a>
         {% endif %}
-        {% if partner %}
-            <a href="/partner_pay" class="btn"
-               style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">Telmex</a>
+        {% if user.is_staff or user.is_superuser %}
             <br>
+            <a href="/staff/payments" class="btn"
+               style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">Pagos pendientes</a>
         {% endif %}
-        <!-- <a href="/logout" class="btn" style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">Cerrar sesión</a> -->
+        {% if user.is_superuser %}
+            <br>
+            <a href="/super/payments" class="btn"
+               style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">Ver todos los pagos</a>
+            <a href="/super/payout" class="btn"
+               style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">Depósitos</a>
+        {% endif %}
     </div>
 {% endblock %}
