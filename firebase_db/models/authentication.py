@@ -3,7 +3,7 @@ from django.contrib import auth
 from django.core.handlers.wsgi import WSGIRequest
 
 from ..helpers.settings import firebase
-from django.contrib.auth.models import User
+from account.models import PaylyUser as User
 
 FIREBASE_KEY = 'firebase_user_id'
 

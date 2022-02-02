@@ -1,6 +1,6 @@
 from random import choice
 
-from django.contrib.auth.models import User
+from account.models import PaylyUser as User
 from django.test import TestCase
 from faker import Faker
 
