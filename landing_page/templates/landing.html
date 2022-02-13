@@ -45,15 +45,15 @@
 <body>
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="/services">Servicios</a>
-        <a href="/account">Mi cuenta</a>
+        <a href="{% url 'services' %}">Servicios</a>
+        <a href="{% url 'account' %}">Mi cuenta</a>
     </div>
     <div id="hero">
         <div id="navbar">
             <img src="{% static 'images/payly-negro.png' %}" alt="" height="100%">
         <div id="menu_buttons">
-            <a class="menus" href="/services">Servicios</a>
-            <a class="menus" href="/account">Mi cuenta</a>
+            <a class="menus" href="{% url 'services' %}">Servicios</a>
+            <a class="menus" href="{% url 'account' %}">Mi cuenta</a>
             <button id="btn_menu" onclick="openNav()">
                 <span>&#9776;</span>
             </button>
@@ -65,7 +65,7 @@
                     <!-- <div class="slide-in-bottom-delay" class="hero_description">
                         Garantizado 
                     </div> -->
-                    <a href="/services" style="font-family: inherit;">Ahorra en tus servicios</a>
+                    <a href="{% url 'services' %}" style="font-family: inherit;">Ahorra en tus servicios</a>
                     
                 </div>
             </div>
@@ -106,6 +106,7 @@
                 <div>
                     y más próximamente
                 </div>
+            </div>
         </section>
     </div>
     <div id="warranty">

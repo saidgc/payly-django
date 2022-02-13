@@ -16,7 +16,7 @@ class TestAccount(TestCase):
         self.assertRedirects(response, '/login/', HTTPStatus.MOVED_PERMANENTLY)
 
     def test_view_receipts_without_login(self):
-        response = self.client.get('/receipt', follow=True)
+        response = self.client.get('/account/receipt', follow=True)
         self.assertRedirects(response, '/login/', HTTPStatus.MOVED_PERMANENTLY)
 
 
@@ -48,6 +48,6 @@ class TestAccountReceipts(PrepareTestUser):
         session.save()
 
     def test_view_account_receipts_with_login(self):
-        response = self.client.get('/receipt', follow=True)
+        response = self.client.get('/account/receipt', follow=True)
         self.assertTemplateUsed(response, 'receipts.html')
         self.assertIn(SESSION_KEY, self.client.session)

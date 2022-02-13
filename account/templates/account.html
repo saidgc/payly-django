@@ -3,29 +3,34 @@
 {% block content %}
     <div id="column">
         <h1 style="font-weight: 400;">Hola {{ user.first_name }}</h1>
-        <a href="/receipt" class="btn"
+        <a href="{% url 'account_receipts' %}" class="btn"
            style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">Mis recibos</a>
         {% if user.is_collaborator or user.is_superuser %}
             <br>
-            <a href="/collaborator/pay/telmex" class="btn"
-               style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">Pagar telmex de cliente</a>
-            <a href="/collaborator/receipts" class="btn"
-               style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">Recibos de cliente</a>
-            <a href="/collaborator/due" class="btn"
-               style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">Saldo por cubrir</a>
-            <a href="/collaborator/payout" class="btn"
+            <a href="{% url 'collaborator_pay_telmex' %}" class="btn"
+               style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">Pagar telmex de
+                cliente</a>
+            <a href="{% url 'collaborator_receipts' %}" class="btn"
+               style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">Recibos de
+                cliente</a>
+            <a href="{% url 'collaborator_due' %}" class="btn"
+               style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">Saldo por
+                cubrir</a>
+            <a href="{% url 'collaborator_payout' %}" class="btn"
                style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">Mis pagos</a>
         {% endif %}
         {% if user.is_staff or user.is_superuser %}
             <br>
-            <a href="/staff/payments" class="btn"
-               style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">Pagos pendientes</a>
+            <a href="{% url 'staff_payments' %}" class="btn"
+               style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">Pagos
+                pendientes</a>
         {% endif %}
         {% if user.is_superuser %}
             <br>
-            <a href="/super/payments" class="btn"
-               style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">Ver todos los pagos</a>
-            <a href="/super/payout" class="btn"
+            <a href="{% url 'super_payments' %}" class="btn"
+               style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">Ver todos los
+                pagos</a>
+            <a href="{% url 'super_payout' %}" class="btn"
                style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">Depósitos</a>
         {% endif %}
     </div>

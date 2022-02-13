@@ -56,7 +56,7 @@
         <p style="color: #fff; margin: 0; padding: 0;">Nuevo servicio: Predial Puebla</p>
     </div>
     <div id="menu">
-        <a href="/">
+        <a href="{% url 'landing' %}">
             <div id="logo">
                 <img src="{% static 'images/payly-negro.png' %}" alt="logo" height="100%">
             </div>
@@ -64,8 +64,8 @@
         <div id="list">
             <ul>
                 <li id="select">
-                    <a href="/services">Servicios</a></li>
-                <li><a href="/account">Mi cuenta</a></li>
+                    <a href="{% url 'services' %}">Servicios</a></li>
+                <li><a href="{% url 'account' %}">Mi cuenta</a></li>
                 <!-- <li><a href="/help">Ayuda</a></li> -->
                 
             </ul>
@@ -75,12 +75,12 @@
             <!-- <a href="https://www.facebook.com/paylymx" target="_blank" style="margin-right: 10pt;">
                 <img src="images/facebook.png" alt="logo" height="35pt">
             </a> -->
-            <a id="login" href="/logout">Cerrar sesión</a>
+            <a id="login" href="{% url 'logout' %}">Cerrar sesión</a>
         </div>
         {% else %}
         <div id="signin-login">
-            <a id="login" href="/login">Ingresar</a>
-            <a id="button-singup" href="/register">
+            <a id="login" href="{% url 'login' %}">Ingresar</a>
+            <a id="button-singup" href="{% url 'register' %}">
                 Abre tu cuenta
             </a>
             <!-- <a href="https://www.facebook.com/paylymx" target="_blank">
@@ -124,7 +124,7 @@
         </div>
         <div class="column flexes"
             style="justify-content: space-evenly; align-items: center; font-size: 18pt; color: rgba(255,255,255,.8);">
-            <a href="/warranty">Garantía Payly</a>
+            <a href="{% url 'warranty' %}">Garantía Payly</a>
             <a href="https://www.facebook.com/paylymx">Facebook</a>
             <!-- <a href="">YouTube</a> -->
         </div>

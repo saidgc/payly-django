@@ -19,7 +19,7 @@
 
     <p id="sls">{{ form.submit() }}</p>
     <p style="text-align: center;">
-        <a href="/login">Inicia sesión</a>
+        <a href="{% url 'login' %}">Inicia sesión</a>
     </p>
 </form>
 {% else %}
@@ -27,7 +27,7 @@
     Se ha mandado un correo para restablecer tu contraseña.
 </h2>
 <p style="text-align: center;">
-    <a href="/login">Inicia sesión</a>
+    <a href="{% url 'login' %}">Inicia sesión</a>
 </p>
 {% endif %}
 {% endblock %}
