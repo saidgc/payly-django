@@ -1,5 +1,4 @@
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
 from firebase_db.models.collections import Service
 
@@ -8,11 +7,11 @@ TITLE = 'Pagar '
 
 def pay_service(request):
     if request.method != 'POST':
-        return HttpResponseRedirect('/')
+        return redirect('landing')
 
     service_id = request.POST.get('id', '')
     if not service_id:
-        return HttpResponseRedirect('/services')
+        return redirect('services')
     service = Service().get_service(service_id=service_id)
 
     context = {

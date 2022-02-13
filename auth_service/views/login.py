@@ -1,5 +1,4 @@
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
 from auth_service.forms.login import LoginForm
 from firebase_db.models.authentication import FirebaseAuthentication
@@ -13,7 +12,7 @@ def login_view(request):
     login_error = False
 
     if request.user.is_authenticated:
-        return HttpResponseRedirect('/services')
+        return redirect('services')
 
     if request.method == 'POST':
         requested_form = LoginForm(request.POST)
@@ -27,7 +26,7 @@ def login_view(request):
                 password=password,
             )
             if login_result:
-                return HttpResponseRedirect('/services')
+                return redirect('services')
             else:
                 login_error = True
 

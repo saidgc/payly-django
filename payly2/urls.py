@@ -14,10 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from account import views as account
 from auth_service import views as auth
+from collaborator import views as collaborator
 from landing_page import views as landing_page
 from services import views as services
 
@@ -35,13 +36,19 @@ urlpatterns = [
     path('services/', services.show_all_services, name='services'),
     path('pay', services.pay_service, name='service_pay'),
 
-    path('account/', account.home, name='account'),
-    path('account/receipt/', account.receipts, name='account_receipts'),
+    path('account/', include([
+        path('', account.home, name='account'),
+        path('receipt/', account.receipts, name='account_receipts'),
+    ])),
 
-    path('collaborator/pay/telmex', account.home, name='collaborator_pay_telmex'),  # TODO
-    path('collaborator/receipts', account.home, name='collaborator_receipts'),  # TODO
-    path('collaborator/due', account.home, name='collaborator_due'),  # TODO
-    path('collaborator/payout', account.home, name='collaborator_payout'),  # TODO
+    path('collaborator/', include([
+        # TODO create service menu for collaborator
+        path('pay/', collaborator.pay_service_collaborator, name='collaborator_pay_service'),
+        path('pay/<slug:service_id>', collaborator.pay_service_collaborator, name='collaborator_pay_service'),
+        path('receipts/', account.home, name='collaborator_receipts'),  # TODO
+        path('due/', account.home, name='collaborator_due'),  # TODO
+        path('payout/', account.home, name='collaborator_payout'),  # TODO
+    ])),
 
     path('staff/payments', account.home, name='staff_payments'),  # TODO
 

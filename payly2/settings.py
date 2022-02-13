@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'landing_page',
     'services',
     'account',
+    'collaborator',
 ]
 
 MIDDLEWARE = [

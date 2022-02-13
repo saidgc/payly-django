@@ -7,7 +7,7 @@
            style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">Mis recibos</a>
         {% if user.is_collaborator or user.is_superuser %}
             <br>
-            <a href="{% url 'collaborator_pay_telmex' %}" class="btn"
+            <a href="{% url 'collaborator_pay_service' %}" class="btn"
                style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">Pagar telmex de
                 cliente</a>
             <a href="{% url 'collaborator_receipts' %}" class="btn"

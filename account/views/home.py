@@ -1,10 +1,9 @@
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
 
 def home(request):
     if not request.user.is_authenticated:
-        return HttpResponseRedirect('/login')
+        return redirect('login')
 
     context = {
         'title': 'Cuenta',

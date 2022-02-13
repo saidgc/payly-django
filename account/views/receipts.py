@@ -1,14 +1,13 @@
 import time
 
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
 from firebase_db.models.collections import Payment
 
 
 def receipts(request):
     if not request.user.is_authenticated:
-        return HttpResponseRedirect('/login')
+        return redirect('login')
 
     customer_receipts = Payment().get_payments_by_customer(
         customer_id=request.user.firebase_user_id,

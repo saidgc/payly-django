@@ -1,0 +1,1 @@
+from collaborator.views.pay_service import pay_service_collaborator
