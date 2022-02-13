@@ -1,14 +1,16 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
-from ..forms.login import LoginForm
+from auth_service.forms.login import LoginForm
 from firebase_db.models.authentication import FirebaseAuthentication
+
+TITLE = 'Inicia sesión'
+
+login_form = LoginForm()
 
 
 def login_view(request):
-    title = 'Inicia sesión'
     login_error = False
-    login_form = LoginForm()
 
     if request.user.is_authenticated:
         return HttpResponseRedirect('/services')
@@ -18,19 +20,20 @@ def login_view(request):
         if requested_form.is_valid():
             email = requested_form.cleaned_data['email']
             password = requested_form.cleaned_data['password']
-            if FirebaseAuthentication().login(
-                    request=request,
-                    user=email,  # TODO change email for user real name
-                    email=email,
-                    password=password,
-            ):
+            login_result = FirebaseAuthentication().login(
+                request=request,
+                user=email,  # TODO change email for user real name
+                email=email,
+                password=password,
+            )
+            if login_result:
                 return HttpResponseRedirect('/services')
             else:
                 login_error = True
 
     context = {
         'form': login_form,
-        'title': title,
+        'title': TITLE,
         'error': login_error,
     }
     return render(

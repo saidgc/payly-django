@@ -1,4 +1,4 @@
-"""payly2 URL Configuration
+"""payly2 URL Configuration.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
@@ -16,10 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-import auth_service.views as auth
-import landing_page.views as landing_page
-import services.views as services
-import account.views as account
+from account import views as account
+from auth_service import views as auth
+from landing_page import views as landing_page
+from services import views as services
 
 urlpatterns = [
     path('', landing_page.index),
@@ -29,4 +29,5 @@ urlpatterns = [
     path('services/', services.show_all_services),
     path('pay', services.pay_service),
     path('account/', account.home),
+    path('receipt/', account.receipts),
 ]

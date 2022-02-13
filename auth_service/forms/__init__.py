@@ -1,2 +1,1 @@
-from . import login
-
+from auth_service.forms import login

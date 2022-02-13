@@ -9,9 +9,16 @@ pyrebase4 = "4.5.0"
 firebase-admin = "*"
 google-cloud-firestore = "*"
 psycopg2-binary = "*"
+python-dotenv = "*"
 
 [dev-packages]
 Faker = "*"
+isort = "==4.3.21"
+add-trailing-comma = "==1.5.0"
+wemake-python-styleguide = "==0.13.3"
+mypy = "==0.910"
+pyformat = "==0.7"
+vulture = "*"
 
 [requires]
 python_version = "3.8"

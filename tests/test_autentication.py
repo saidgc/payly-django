@@ -23,6 +23,3 @@ class TestAuthentication(TestCase):
             password=self.password,
         )
         self.assertFalse(resp)
-
-
-

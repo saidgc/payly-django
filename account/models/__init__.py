@@ -1,1 +1,1 @@
-from .user import PaylyUser
+from account.models.user import PaylyUser

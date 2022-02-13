@@ -1,3 +1,1 @@
-from .authentication import FirebaseAuthentication
-
-
+from firebase_db.models.authentication import FirebaseAuthentication

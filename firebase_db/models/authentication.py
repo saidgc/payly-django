@@ -2,10 +2,11 @@ import requests
 from django.contrib import auth
 from django.core.handlers.wsgi import WSGIRequest
 
-from ..helpers.settings import firebase
 from account.models import PaylyUser as User
+from firebase_db.helpers.settings import firebase
 
-class FirebaseAuthentication:
+
+class FirebaseAuthentication(object):
     def __init__(self) -> None:
         self.firebase_auth = firebase.auth()
 

@@ -1,7 +1,8 @@
 from google.cloud import firestore
+from google.cloud.firestore_v1.base_query import BaseQuery
 
 
-class FirestoreCollection:
+class FirestoreCollection(object):
     def __init__(self, collection: str) -> None:
         self.collection = firestore.Client().collection(collection)
 
@@ -9,13 +10,15 @@ class FirestoreCollection:
 class Service(FirestoreCollection):
 
     def __init__(self):
-        super().__init__(u'services')
+        super().__init__('services')
 
     def get_all_services(self) -> dict:
         all_services = {}
-        services = self.collection.\
-            where(u'active', u'==', True).\
-            stream()
+        services = self.collection.where(
+            field_path='active',
+            op_string='==',
+            value=True,
+        ).stream()
         for service in services:
             all_services[service.id] = service.to_dict()
         return all_services
@@ -23,16 +26,15 @@ class Service(FirestoreCollection):
     def get_service(self, service_id: str) -> dict:
         if not service_id:
             return {}
-        service = self.collection.document(
+        return self.collection.document(
             document_id=service_id,
         ).get().to_dict()
-        return service
 
 
 class Payment(FirestoreCollection):
 
     def __init__(self):
-        super().__init__(u'payments')
+        super().__init__('payments')
 
     def get_all_payments(self) -> dict:
         all_payments = {}
@@ -43,10 +45,14 @@ class Payment(FirestoreCollection):
 
     def get_payments_by_customer(self, customer_id: str) -> dict:
         all_payments = {}
-        payments = self.collection.\
-            where(u'user', u'==', customer_id).\
-            order_by('payment_date').\
-            stream()
+        payments = self.collection.where(
+            'user',
+            '==',
+            customer_id,
+        ).order_by(
+            'payment_date',
+            direction=BaseQuery.DESCENDING,
+        ).stream()
         for payment in payments:
             all_payments[payment.id] = payment.to_dict()
         return all_payments

@@ -1,1 +1,1 @@
-from .landing import index
+from landing_page.views.landing import index

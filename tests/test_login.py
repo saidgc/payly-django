@@ -29,7 +29,11 @@ class TestLogin(PrepareTestUser):
 
     def test_view_login_with_logged_user(self):
         response = self.client.get('/login', follow=True)
-        self.assertRedirects(response, '/services/', HTTPStatus.MOVED_PERMANENTLY)
+        self.assertRedirects(
+            response,
+            '/services/',
+            HTTPStatus.MOVED_PERMANENTLY,
+        )
         self.assertIn(SESSION_KEY, self.client.session)
         self.assertIsNotNone(self.user.firebase_user_id)
 
@@ -46,4 +50,3 @@ class TestLogin(PrepareTestUser):
         self.assertTemplateUsed(response, 'index.html')
         self.assertIn(SESSION_KEY, self.client.session)
         self.assertIsNotNone(self.user.firebase_user_id)
-

@@ -1,5 +1,4 @@
-"""
-ASGI config for payly2 project.
+"""ASGI config for payly2 project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 

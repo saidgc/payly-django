@@ -1,4 +1,6 @@
 {% extends "base_services.html" %}
+{% load static %}
+{% load custom_filter %}
 {% block content %}
     <style>
         h2,
@@ -51,22 +53,22 @@
     <div id="caputre">
         <h1 style="text-align: center;">Recibos</h1>
         {% if receipts %}
-            {% for receipt in receipts %}
+            {% for receipt_id, receipt in receipts.items %}
                 <div class="container">
                     <div class="details">
                         <div class="description_logo">
-                            {% if receipt['payment_data']['service_id'] == "RUoEXxafeYnxnjSXg73J" %}
-                                <img src="images/puebla.svg" alt="" width="30px"
+                            {% if receipt.payment_data.service_id == "RUoEXxafeYnxnjSXg73J" %}
+                                <img src="{% static 'images/puebla.svg' %}" alt="" width="30px"
                                      height="30px">
                             {% else %}
-                                <img src="images/{{ receipt['payment_data']['service'].lower() }}.svg" alt=""
+                                <img src="{% static 'images/'|add_str:receipt.payment_data.service|lower|add_str:'.svg' %}" alt=""
                                      width="30px"
                                      height="30px">
                             {% endif %}
                         </div>
                         <div style="display: flex; flex-direction: column; align-items: start; margin-left: 20px;">
-                            <h3>{{ receipt['payment_data']['service'] }} {{ receipt['payment_data']['number'] }}</h3>
-                            <h4 style="color: #B0B0B0;">{{ receipt['payment_date'].strftime("%d %b %-I:%M %p") }}</h4>
+                            <h3>{{ receipt.payment_data.service }} {{ receipt.payment_data.number }}</h3>
+                            <h4 style="color: #B0B0B0;">{{ receipt.payment_date|parse_date }}</h4>
                         </div>
                     </div>
                     <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -74,21 +76,21 @@
                         <div style="display: flex; align-items: center; flex-direction: column;">
                             <div class="receipt">
                                 <div style="flex-direction: column; display: flex; justify-content: center;">
-                                    <h2 style="margin-left: 20px;">${{ receipt['payment_data']['amount'] }}</h2>
+                                    <h2 style="margin-left: 20px;">${{ receipt.payment_data.amount }}</h2>
                                     <h5 style="margin-left: 20px; font-size: 9pt; color: #B0B0B0;">Via
-                                        {{ receipt['payment_method'] }}</h5>
+                                        {{ receipt.payment_method }}</h5>
                                 </div>
-                                {% if receipt['problem'] %}
+                                {% if receipt.problem %}
                                     <h5 style="text-align: center;">Contactanos ventas@payly.com.mx</h5>
-                                    <img src="images/alert.svg" alt="" height="50%" style="margin-right: 30px;">
+                                    <img src="{% static 'images/alert.svg' %}" alt="" height="50%" style="margin-right: 30px;">
                                 {% else %}
-                                    {% if receipt['completed'] %}
-                                        <h5 style="margin: 0 20px;">Autorización {{ receipt['authorization'] }}</h5>
-                                        <img src="images/success.svg" alt="" height="50%" style="margin-right: 30px;">
-                                    {% elif receipt['payment_completed'] %}
-                                        <img src="images/waiting.svg" alt="" height="50%" style="margin-right: 30px;">
+                                    {% if receipt.completed %}
+                                        <h5 style="margin: 0 20px;">Autorización {{ receipt.authorization }}</h5>
+                                        <img src="{% static 'images/success.svg' %}" alt="" height="50%" style="margin-right: 30px;">
+                                    {% elif receipt.payment_completed %}
+                                        <img src="{% static 'images/waiting.svg' %}" alt="" height="50%" style="margin-right: 30px;">
                                     {% else %}
-                                        <img src="images/error.svg" alt="" height="50%" style="margin-right: 30px;">
+                                        <img src="{% static 'images/error.svg' %}" alt="" height="50%" style="margin-right: 30px;">
                                     {% endif %}
                                 {% endif %}
                             </div>
@@ -97,25 +99,25 @@
                     </div>
                 </div>
 
-                <!-- {% if receipt['completed'] %}
+                <!-- {% if receipt.completed %}
     <div class="receipt">
-        <h3>{{ receipt['payment_data']['service'] }} {{ receipt['payment_data']['number'] }}
-            ${{ receipt['payment_data']['amount'] }}</h3>
-        <h4>{{ receipt['payment_date'].strftime("%m/%d/%Y %-I:%M %p") }}</h4>
-        <h5>Autorización {{ receipt['authorization'] }}</h5>
+        <h3>{{ receipt.payment_data.service }} {{ receipt.payment_data.number }}
+            ${{ receipt.payment_data.amount }}</h3>
+        <h4>{{ receipt.payment_date|parse_date }}</h4>
+        <h5>Autorización {{ receipt.authorization }}</h5>
     </div>
-    {% elif receipt['payment_completed'] %}
+    {% elif receipt.payment_completed %}
     <div class="receipt" style="background-color: #FFD300; color: #A78A00;">
-        <h3>{{ receipt['payment_data']['service'] }} {{ receipt['payment_data']['number'] }}
-            ${{ receipt['payment_data']['amount'] }}</h3>
-        <h4>{{ receipt['payment_date'].strftime("%m/%d/%Y %-I:%M %p") }}</h4>
+        <h3>{{ receipt.payment_data.service }} {{ receipt.payment_data.number }}
+            ${{ receipt.payment_data.amount }}</h3>
+        <h4>{{ receipt.payment_date|parse_date }}</h4>
         <h5>Autorización pendiente</h5>
     </div>
     {% else %}
     <div class="receipt" style="background-color: #FF2300; color: #A71700;">
-        <h3>{{ receipt['payment_data']['service'] }} {{ receipt['payment_data']['number'] }}
-            ${{ receipt['payment_data']['amount'] }}</h3>
-        <h4>{{ receipt['payment_date'].strftime("%m/%d/%Y %-I:%M %p") }}</h4>
+        <h3>{{ receipt.payment_data.service }} {{ receipt.payment_data.number }}
+            ${{ receipt.payment_data.amount }}</h3>
+        <h4>{{ receipt.payment_date|parse_date }}</h4>
         <h5>Pago fallido</h5>
     </div>
     {% endif %} -->
