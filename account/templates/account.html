@@ -7,17 +7,23 @@
            style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">Mis recibos</a>
         {% if user.is_collaborator or user.is_superuser %}
             <br>
-            <a href="{% url 'collaborator_pay_service' %}" class="btn"
-               style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">Pagar telmex de
-                cliente</a>
+            {#TODO change this dynamical#}
+            <a href="{% url 'collaborator_pay_service' '6IpK0smbJQ00mAeDa81g' %}" class="btn"
+               style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">
+                Pagar telmex de cliente
+            </a>
             <a href="{% url 'collaborator_receipts' %}" class="btn"
-               style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">Recibos de
-                cliente</a>
+               style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">
+                Recibos de cliente
+            </a>
             <a href="{% url 'collaborator_due' %}" class="btn"
-               style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">Saldo por
-                cubrir</a>
+               style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">
+                Saldo por cubrir
+            </a>
             <a href="{% url 'collaborator_payout' %}" class="btn"
-               style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">Mis pagos</a>
+               style="width: 200pt; height: 30pt; font-size: 16pt; color: #ffffff; margin-bottom: 10pt;">
+                Mis pagos
+            </a>
         {% endif %}
         {% if user.is_staff or user.is_superuser %}
             <br>

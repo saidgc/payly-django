@@ -1,11 +1,10 @@
 from http import HTTPStatus
-from unittest.mock import create_autospec, Mock
 
 from django.contrib.auth import SESSION_KEY
 from django.test import TestCase
 from django.urls import reverse
 from faker import Faker
-from firebase_db.models.collections import Service
+
 from tests.base import PrepareTestUser
 
 fake = Faker()

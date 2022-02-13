@@ -10,6 +10,8 @@ firebase-admin = "*"
 google-cloud-firestore = "*"
 psycopg2-binary = "*"
 python-dotenv = "*"
+django-phonenumber-field = "*"
+phonenumbers = "*"
 
 [dev-packages]
 Faker = "*"

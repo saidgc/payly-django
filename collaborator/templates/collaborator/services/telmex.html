@@ -1,309 +1,51 @@
-{% extends "base_services.html" %}
-{% load static %}
-
-{% block content %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-    src="https://www.paypal.com/sdk/js?client-id=ASz6HjZ_zRhKc9VMgvuUdw700Rzi-Po9-FHd0iY7wAkE5Z_DQk9Iz11hppR0iJV0-6qhBKqOKztZbimr&currency=MXN&locale=es_MX"></script>
-
-<style>
-    #preview {
-        width: 100vw;
-        display: flex;
-        justify-content: center;
-    }
-
-    #left,
-    #right {
-        padding: 10px;
-        width: 30%;
-    }
-
-    h1 {
-        margin: 0;
+{% extends "collaborator/pay_service_base.html" %}
+{% block service_form %}
+    <style>
+    label {
         font-size: 50pt;
-        margin-bottom: 20pt;
+        margin: 0 0 20pt;
         color: black;
+        font-weight: bold;
     }
+    </style>
+    <input id="servicio" type="hidden" name="service" value="{{ name }}">
+    <div id="left">
+        {% comment %}<label for="tel-input" style="font-size: 50pt; margin: 0 0 20pt;color: black;font-weight: bold;">Número {{ name }}</label>
 
-    input[type="tel"],
-    input[type="number"] {
-        font-size: 30pt;
-        border: 0;
-        outline: 0;
-        border-bottom: 1px solid black;
-        width: 51%;
-        margin-bottom: 10px;
-        background: transparent;
-        padding: 5pt;
-        box-sizing: border-box;
-        font-weight: 600;
-        letter-spacing: -0.06em;
-    }
+        <input type="hidden" id="discount_" name="discount" value="{{ discount }}">
+        <input type="hidden" id="service_id" name="service_id" value="{{ id }}">
 
-    input[type="submit"] {
-        bottom: 0;
-        padding: 5pt 12pt;
-        text-align: center;
-        font-size: 19pt;
-        width: 70%;
-        color: #ffffff;
-        background-color: #000000;
-        border: 0;
-        font-weight: 400;
-        border-radius: 2px;
-    }
-
-    #right {
-        box-sizing: border-box;
-        border-radius: 5pt;
-        padding: 0 40pt;
-        color: #B0B0B0;
-        color: #464646;
-        text-align: center;
-        display: none;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-
-    .center-element {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 50pt;
-        flex-direction: column;
-    }
-
-    .row {
-        width: 100%;
-        padding: 0 30pt;
-        margin: 0;
-        display: flex;
-        justify-content: space-between;
-        box-sizing: border-box;
-    }
-
-    p {
-        margin: 0;
-    }
-
-    h3 {
-        font-size: 20pt;
-        color: #000000;
-        margin-bottom: 50pt;
-    }
-
-    @media (max-width: 600px) {
-
-        #left,
-        #right {
-            width: 90%;
-            text-align: center;
-        }
-
-        #right {
-            padding: 0;
-        }
-
-        input[type="tel"],
-        input[type="number"] {
-            width: 76%;
-            text-align: center;
-        }
-
-        input[type="number"] {
-            margin: 0 auto;
-        }
-
-        #amount-input {
-            width: 40%;
-        }
-
-        #preview {
-            align-items: center;
-            flex-direction: column;
-        }
-    }
-
-    form {
-        width: inherit;
-        height: inherit;
-        align-items: inherit;
-        flex-direction: inherit;
-    }
-</style>
-<div id="preview">
-    <form action="/pay" method="post">
-        <input id="servicio" type="hidden" name="service" value="{{ name }}">
-        <div id="left">
-            {% if type != 3 %}
-            <h1>Introduce tu número {{ name }}</h1>
-            {% else %}
-            <h1>{{ name }}</h1>
-            {% endif %}
-            <input type="hidden" id="discount_" name="discount" value="{{ discount }}">
-            <input type="hidden" id="service_id" name="service_id" value="{{ id }}">
-            {% if type == 3 %}
-            <style>
-                input[type="tel"] {
-                    font-size: 20pt;
-                }
-
-                #capture {
-                    width: 296pt;
-                    font-size: 15pt;
-                }
-
-                #amount-input {
-                    width: 50%;
-                }
-
-                @media (max-width: 600px) {
-                    #capture {
-                        width: 255pt;
-                        font-size: 13pt;
-                    }
-                }
-            </style>
-
-            <h2>Cuenta predial</h2>
-            <div>
-                <p>
-                    <select id="estateType" name="tipo" style="margin-bottom: 10pt; width: 70pt">
-                        <option>PU</option>
-                        <option>PR</option>
-                    </select>
-                    -
-                    <input type="tel" name="account" id="account" placeholder="XXXXXXX" size="6" minlength="6"
-                        maxlength="7" style="width: 114pt;">
-                    -
-                    <input type="tel" name="delegation" id="delegation" placeholder="X" size="1" minlength="1"
-                        maxlength="2" style="width: 45pt;">
-                </p>
-            </div>
-
-
-            <h2>o la línea de captura</h2>
-            <input type="tel" name="number" id="capture" placeholder="" size="{{ length }}"
-                minlength="{{ length }}" maxlength="{{ length }}">
-            <p style="margin-bottom: 50pt;">{{ length }} dígitos</p>
-
-            <input type="number" id="amount-input" name="amount" placeholder="499" max="50000" style="display: none;"/>
-            <div style="width: 100%; display: flex; align-items: center; padding-bottom: 30pt; flex-direction: column;">
-                <h2 id="status-label" style="display: none;">Cargando...</h2>
-                <h2 id="error-label" style="display: none;">Error interno, vuelve a intentar.</h2>
-                <button  type="button" id="consulta" class="btn" style="width: 115px; height: 40px;" onclick="consultarPredial()"> Consultar</button>
-            </div>
-
-
-            {% else %}
-            <input type="tel" name="number" id="tel-input" placeholder="1231234567" required size="{{ length }}"
-                minlength="{{ length }}" maxlength="{{ length }}">
-            <h2 id="status-label" style="display: none;">Cargando...</h2>
-            <h2 id="amount-label-uknow" style="display: none;">Tu línea no fue encontrada, verifica de nuevo.</h2>
-            <h2 id="amount-label-balance" style="display: none;">Tu línea no tiene saldo pendiente.</h2>
-            <h2 id="amount-label-other" style="display: none;">Introduce el monto de tu recibo.</h2>
-            <h2 id="no-valid" style="display: none; color: red;">No valido.</h2>
-            <input type="number" id="amount-input" name="amount" placeholder="499" max="50000" required
-                style="display: none;" />
-            {% endif %}
-        </div>
-        <div id="right">
-            <h3>Resumen de pago</h3>
-            {% if type != 3 %}
+        <input type="tel" name="number" id="tel-input" placeholder="1231234567" required size="{{ length }}"
+               minlength="{{ length }}" maxlength="{{ length }}">
+        <h2 id="status-label" style="display: none;">Cargando...</h2>
+        <h2 id="amount-label-uknow" style="display: none;">Tu línea no fue encontrada, verifica de nuevo.</h2>
+        <h2 id="amount-label-balance" style="display: none;">Tu línea no tiene saldo pendiente.</h2>
+        <h2 id="amount-label-other" style="display: none;">Introduce el monto de tu recibo.</h2>
+        <h2 id="no-valid" style="display: none; color: red;">No valido.</h2>
+        <input type="number" id="amount-input" name="amount" placeholder="499" max="50000" required
+               style="display: none;"/>{% endcomment %}
+    </div>
+    <div id="right">
+        <h3>Resumen de pago</h3>
+        {% if type != 3 %}
             <div class="row">
                 <p>Monto del recibo {{ name }}</p>
                 <strong id="amount">$12345</strong>
             </div>
-            {% endif %}
-            {% if discount != 0 %}
+        {% endif %}
+        {% if discount != 0 %}
             <div class="row">
                 <p>Descuento Payly</p>
                 <strong id="discount">-$xxx</strong>
             </div>
-            {% endif %}
-            <hr>
-            <div class="row">
-                <p>Total a pagar</p>
-                <strong id="total">$12</strong>
-            </div>
-            <div class="center-element">
-                <!-- <input id="btnpagar" type="submit" value="Pagar" style="margin-bottom: 20px;"> -->
-                <div id="paypal-button-container" style="width: 70%;"></div>
-            </div>
-
+        {% endif %}
+        <hr>
+        <div class="row">
+            <p>Total a pagar</p>
+            <strong id="total">$12</strong>
         </div>
-    </form>
-</div>
-{% if type != 3 %}
-{% comment %}<script src="/js/checkAmount.js"></script>{% endcomment %}
-<script src="{% static '/js/amountCheck.js' %}"></script>
-{% else %}
-<script src="{% static '/js/predial.js' %}"></script>
-{% endif %}
-
-<script>
-    function post(path, params, method = 'post') {
-        const form = document.createElement('form');
-        form.method = method;
-        form.action = path;
-
-        for (const key in params) {
-            if (params.hasOwnProperty(key)) {
-                const hiddenField = document.createElement('input');
-                hiddenField.type = 'hidden';
-                hiddenField.name = key;
-                hiddenField.value = params[key];
-                form.appendChild(hiddenField);
-            }
-        }
-        document.body.appendChild(form);
-        form.submit();
-    }
-
-    paypal.Buttons({
-        style: {
-            shape: 'rect',
-            color: 'black',
-            layout: 'vertical',
-            label: 'paypal'
-        },
-        createOrder: function () {
-
-            return fetch('/create-paypal-transaction-nologin', {
-                method: 'post',
-                body: JSON.stringify({
-                {% if type == 3 %}
-                    'account': $account.value,
-                    'delegation':$delegation.value,
-                    'capture':$capture.value,
-                {% else %}
-                    'number': $inputService.value,
-                {% endif %}
-                    'service_id': '{{ id }}',
-                    'amount': $inputAmount.value,
-                    'service': '{{ name }}'
-                }),
-                headers: {
-                    'content-type': 'application/json'
-                }
-            }).then(function (res) {
-                return res.json();
-            }).then(function (data) {
-                return data.id;
-            });
-        },
-        onApprove: function (data, actions) {
-            return actions.order.capture().then(function (details) {
-                fbq('track', 'Purchase', { currency: "MXN", value: $inputAmount.value });
-                post('/success', { 'json': JSON.stringify(details) })
-            });
-        },
-        onCancel: function (data) {
-            window.location.href = "/services";
-        }
-    }).render('#paypal-button-container');
-</script>
-
+        <div class="center-element">
+            <input id="btnpagar" type="submit" value="Pagar" style="margin-bottom: 20px;">
+        </div>
+    </div>
 {% endblock %}
