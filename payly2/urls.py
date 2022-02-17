@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from account import views as account
+from apps.account import views as account
 from auth_service import views as auth
 from collaborator import views as collaborator
 from landing_page import views as landing_page
@@ -45,6 +45,7 @@ urlpatterns = [
         # TODO create service menu for collaborator
         path('pay/', collaborator.pay_service_collaborator, name='collaborator_pay_service'),
         path('pay/<slug:service_id>', collaborator.pay_service_collaborator, name='collaborator_pay_service'),
+        path('pay/<slug:service_id>/pay/', collaborator.process_order, name='collaborator_pay_service_pay'),
         path('receipts/', account.home, name='collaborator_receipts'),  # TODO
         path('due/', account.home, name='collaborator_due'),  # TODO
         path('payout/', account.home, name='collaborator_payout'),  # TODO

@@ -3,7 +3,7 @@ from random import choice
 from django.test import TestCase
 from faker import Faker
 
-from account.models import PaylyUser as User
+from apps.account.models import PaylyUser as User
 from firebase_db.models.collections import Payment, Service
 
 fake = Faker()

@@ -1,4 +1,4 @@
-{% extends "base_services.html" %}
+{% extends "services/base_services.html" %}
 {% load static %}
 
 {% block content %}
@@ -16,9 +16,9 @@
         #right,
         #left {
             width: 30%;
-            padding: 10px;
             display: flex;
             flex-direction: column;
+            padding: 10px 10px 60pt;
         }
 
         h1 {
@@ -141,12 +141,27 @@
             color: black;
             font-weight: bold;
         }
+
+        label[for="id_amount_to_pay"],
+        #id_amount_to_pay {
+            display: none;
+        }
+
+        .hidden-input {
+            display: none;
+        }
     </style>
     <div id="preview">
-        <form action="/pay" method="post">
+        <form action="{% url 'collaborator_pay_service_pay' service.service_id %}" method="post">
             <div id="left">
                 {% csrf_token %}
-                {{ pay_form }}
+                {% for field in pay_form %}
+                    {% if not field.is_hidden %}
+                        <label id="label_{{ field.id_for_label }}"
+                               for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {% endif %}
+                    {{ field }}
+                {% endfor %}
             </div>
             <div id="right">
                 <h3>Resumen de pago</h3>
@@ -171,9 +186,7 @@
             </div>
         </form>
     </div>
-    {% comment %}<script src="/js/checkAmount.js"></script>{% endcomment %}
-    <script src="{% static '/js/amountCheck.js' %}"></script>
-
+    <script src="{% static '/js/collaborator/pay/telmex.js' %}"></script>
     <script>
         function post(path, params, method = 'post') {
             const form = document.createElement('form');

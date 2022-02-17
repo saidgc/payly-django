@@ -18,9 +18,12 @@ def pay_service_collaborator(request, service_id=None):
     context = {
         'title': TITLE + service['name'],
         'id': service_id,
-        'pay_form': TelmexForm(),
+        'pay_form': TelmexForm(initial={
+            'service_discount': 10,
+        }),
+        'service': service,
     }
-    context.update(service)
+    context['service']['service_id'] = service_id
     return render(
         request=request,
         template_name='collaborator/pay_service_base.html',

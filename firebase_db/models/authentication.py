@@ -2,7 +2,7 @@ import requests
 from django.contrib import auth
 from django.core.handlers.wsgi import WSGIRequest
 
-from account.models import PaylyUser as User
+from apps.account.models import PaylyUser as User
 from firebase_db.helpers.settings import firebase
 
 

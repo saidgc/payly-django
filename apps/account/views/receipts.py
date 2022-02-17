@@ -20,6 +20,6 @@ def receipts(request):
     }
     return render(
         request=request,
-        template_name='receipts.html',
+        template_name='account/receipts.html',
         context=context,
     )

@@ -33,7 +33,7 @@ class TestAccountLoggedUser(PrepareTestUser):
     def test_view_account_with_login(self):
         response = self.client.get('/account', follow=True)
         self.assertEqual(response.status_code, HTTPStatus.OK)
-        self.assertTemplateUsed(response, 'account.html')
+        self.assertTemplateUsed(response, 'account/account.html')
         self.assertIn(SESSION_KEY, self.client.session)
 
 
@@ -49,5 +49,5 @@ class TestAccountReceipts(PrepareTestUser):
 
     def test_view_account_receipts_with_login(self):
         response = self.client.get('/account/receipt', follow=True)
-        self.assertTemplateUsed(response, 'receipts.html')
+        self.assertTemplateUsed(response, 'account/receipts.html')
         self.assertIn(SESSION_KEY, self.client.session)

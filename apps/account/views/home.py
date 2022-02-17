@@ -10,6 +10,6 @@ def home(request):
     }
     return render(
         request=request,
-        template_name='account.html',
+        template_name='account/account.html',
         context=context,
     )
