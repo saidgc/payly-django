@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.auth_service',
-    'landing_page',
+    'apps.landing_page',
     'services',
     'apps.account',
     'apps.collaborator',

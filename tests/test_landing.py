@@ -8,4 +8,4 @@ class TestLanding(TestCase):
     def test_view_landing(self):
         response = self.client.get('/', follow=True)
         self.assertEqual(response.status_code, HTTPStatus.OK)
-        self.assertTemplateUsed(response, 'landing.html')
+        self.assertTemplateUsed(response, 'landing/landing.html')

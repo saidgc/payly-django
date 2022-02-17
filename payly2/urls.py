@@ -19,7 +19,7 @@ from django.urls import path, include
 from apps.account import views as account
 from apps.auth_service import views as auth
 from apps.collaborator import views as collaborator
-from landing_page import views as landing_page
+from apps.landing_page import views as landing_page
 from services import views as services
 
 urlpatterns = [

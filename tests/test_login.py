@@ -40,7 +40,7 @@ class TestLogin(PrepareTestUser):
     def test_view_landing_with_logged_user(self):
         response = self.client.get('/', follow=True)
         self.assertEqual(response.status_code, HTTPStatus.OK)
-        self.assertTemplateUsed(response, 'landing.html')
+        self.assertTemplateUsed(response, 'landing/landing.html')
         self.assertIn(SESSION_KEY, self.client.session)
         self.assertIsNotNone(self.user.firebase_user_id)
 
