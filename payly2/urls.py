@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from apps.account import views as account
-from auth_service import views as auth
+from apps.auth_service import views as auth
 from collaborator import views as collaborator
 from landing_page import views as landing_page
 from services import views as services

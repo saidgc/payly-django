@@ -14,7 +14,7 @@ class TestLoginView(TestCase):
     def test_view_login(self):
         response = self.client.get('/login', follow=True)
         self.assertEqual(response.status_code, HTTPStatus.OK)
-        self.assertTemplateUsed(response, 'login.html')
+        self.assertTemplateUsed(response, 'authentication/login.html')
 
 
 class TestLogin(PrepareTestUser):

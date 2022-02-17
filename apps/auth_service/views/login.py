@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 
-from auth_service.forms.login import LoginForm
+from apps.auth_service.forms.login import LoginForm
 from firebase_db.models.authentication import FirebaseAuthentication
 
 TITLE = 'Inicia sesión'
@@ -37,6 +37,6 @@ def login_view(request):
     }
     return render(
         request=request,
-        template_name='login.html',
+        template_name='authentication/login.html',
         context=context,
     )
