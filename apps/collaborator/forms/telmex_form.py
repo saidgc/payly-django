@@ -1,6 +1,6 @@
 from phonenumber_field.formfields import PhoneNumberField
 
-from collaborator.forms.base_service_form import BaseServiceForm
+from apps.collaborator.forms.base_service_form import BaseServiceForm
 
 PHONE_NUMBER_LENGTH = 10
 

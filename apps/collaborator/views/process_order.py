@@ -1,6 +1,6 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 
-from collaborator.forms.telmex_form import TelmexForm
+from apps.collaborator.forms.telmex_form import TelmexForm
 from firebase_db.models.collections import Service, Payment
 
 TITLE = 'Pagar '
