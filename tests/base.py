@@ -4,7 +4,7 @@ from django.test import TestCase
 from faker import Faker
 
 from apps.account.models import PaylyUser as User
-from firebase_db.models.collections import Payment, Service
+from apps.firebase_db.models.collections import Payment, Service
 
 fake = Faker()
 

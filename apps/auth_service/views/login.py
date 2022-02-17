@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 
 from apps.auth_service.forms.login import LoginForm
-from firebase_db.models.authentication import FirebaseAuthentication
+from apps.firebase_db.models.authentication import FirebaseAuthentication
 
 TITLE = 'Inicia sesión'
 

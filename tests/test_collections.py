@@ -1,4 +1,4 @@
-from firebase_db.models.collections import FirestoreCollection
+from apps.firebase_db.models.collections import FirestoreCollection
 from tests.base import PrepareTestFirestore
 
 

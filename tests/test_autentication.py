@@ -3,7 +3,7 @@ from unittest.mock import Mock
 from django.test import TestCase
 from faker import Faker
 
-from firebase_db.models.authentication import FirebaseAuthentication
+from apps.firebase_db.models.authentication import FirebaseAuthentication
 
 fake = Faker()
 

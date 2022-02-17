@@ -2,7 +2,7 @@ import time
 
 from django.shortcuts import redirect, render
 
-from firebase_db.models.collections import Payment
+from apps.firebase_db.models.collections import Payment
 
 
 def receipts(request):

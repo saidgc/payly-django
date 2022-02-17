@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 
-from firebase_db.models.collections import Service
+from apps.firebase_db.models.collections import Service
 
 TITLE = 'Pagar '
 

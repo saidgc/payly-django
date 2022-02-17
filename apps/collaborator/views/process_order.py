@@ -1,7 +1,7 @@
 from django.shortcuts import redirect
 
 from apps.collaborator.forms.telmex_form import TelmexForm
-from firebase_db.models.collections import Service, Payment
+from apps.firebase_db.models.collections import Service, Payment
 
 TITLE = 'Pagar '
 

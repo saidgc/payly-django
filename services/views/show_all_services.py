@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from firebase_db.models.collections import Service
+from apps.firebase_db.models.collections import Service
 
 
 def show_all_services(request):

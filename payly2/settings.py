@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'firebase_db',
+    'apps.firebase_db',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

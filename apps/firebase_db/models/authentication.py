@@ -3,7 +3,7 @@ from django.contrib import auth
 from django.core.handlers.wsgi import WSGIRequest
 
 from apps.account.models import PaylyUser as User
-from firebase_db.helpers.settings import firebase
+from apps.firebase_db.helpers.settings import firebase
 
 
 class FirebaseAuthentication(object):
