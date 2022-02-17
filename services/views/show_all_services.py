@@ -12,6 +12,6 @@ def show_all_services(request):
     }
     return render(
         request=request,
-        template_name='index.html',
+        template_name='services/index.html',
         context=context,
     )

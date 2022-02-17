@@ -21,6 +21,6 @@ def pay_service(request):
     context.update(service)
     return render(
         request=request,
-        template_name='pay_service.html',
+        template_name='services/pay_service.html',
         context=context,
     )
