@@ -21,7 +21,6 @@ from apps.auth_service import views as auth
 from apps.collaborator import views as collaborator
 from apps.landing_page import views as landing_page
 from apps.services import views as services
-from apps.administrator import views as administrator
 
 urlpatterns = [
     path('', landing_page.index, name='landing'),
@@ -29,8 +28,7 @@ urlpatterns = [
 
     path('admin/', admin.site.urls, name='admin'),
 
-    path('administrator/', administrator.home, name='administrator'),
-    path('administrator/services/', administrator.services, name='administrator'),
+    path('administrator/', include('apps.administrator.urls')),
 
     path('login/', auth.login_view, name='login'),
     path('logout/', auth.logout_view, name='logout'),
