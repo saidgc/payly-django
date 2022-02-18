@@ -18,7 +18,7 @@ def services(request):
 
     return render(
         request=request,
-        template_name='administrator/home/services.html',
+        template_name='administrator/home/../../../templates/administrator/services/services.html',
         context={'segment': 'services'},
     )
 
@@ -29,7 +29,7 @@ def create_services(request):
 
     return render(
         request=request,
-        template_name='administrator/home/create_service.html',
+        template_name='administrator/home/../../../templates/administrator/services/create_service.html',
         context={'segment': 'services'},
     )
 
