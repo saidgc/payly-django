@@ -1,1 +1,1 @@
-from apps.administrator.views.home import home, services
+from apps.administrator.views import home

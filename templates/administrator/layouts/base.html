@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    {% load static %}
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'images/favicon/site.webmanifest' %}">
+
+    <title>
+        Payly Dashboard - {% block title %}{% endblock %}
+    </title>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
+    <link href="{% static 'administrator/css/nucleo-icons.css' %}" rel="stylesheet"/>
+    <link href="{% static 'administrator/css/nucleo-svg.css' %}" rel="stylesheet"/>
+
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <link href="{% static 'administrator/css/nucleo-svg.css' %}" rel="stylesheet"/>
+    <link id="pagestyle" href="{% static 'administrator/css/soft-ui-dashboard.css' %}" rel="stylesheet"/>
+
+    <!-- Specific CSS goes HERE -->
+    {% block stylesheets %}{% endblock stylesheets %}
+
+</head>
+<body class="g-sidenav-show bg-gray-100 ">
+
+{% include "administrator/includes/sidebar.html" %}
+
+<main class="main-content mt-4 border-radius-lg">
+
+    {% include "administrator/includes/navigation.html" %}
+
+    {% block content %}{% endblock content %}
+
+</main>
+s
+{% include "administrator/includes/scripts.html" %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}{% endblock javascripts %}
+
+<!-- Github buttons -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+</body>
+</html>
