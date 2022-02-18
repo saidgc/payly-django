@@ -13,6 +13,7 @@ class Service(FirestoreCollection):
         super().__init__('services')
 
     def get_all_services(self) -> dict:
+        return {}
         all_services = {}
         services = self.collection.where(
             field_path='active',
@@ -24,6 +25,7 @@ class Service(FirestoreCollection):
         return all_services
 
     def get_service(self, service_id: str) -> dict:
+        return {}
         if not service_id:
             return {}
         return self.collection.document(
@@ -37,6 +39,7 @@ class Payment(FirestoreCollection):
         super().__init__('payments')
 
     def get_all_payments(self) -> dict:
+        return {}
         all_payments = {}
         payments = self.collection.stream()
         for payment in payments:
@@ -44,6 +47,7 @@ class Payment(FirestoreCollection):
         return all_payments
 
     def get_payments_by_customer(self, customer_id: str) -> dict:
+        return {}
         all_payments = {}
         payments = self.collection.where(
             'user',

@@ -14,7 +14,7 @@ class TestLogoutView(TestCase):
     def test_view_logout(self):
         response = self.client.get('/logout', follow=True)
         self.assertEqual(response.status_code, HTTPStatus.OK)
-        self.assertTemplateUsed(response, 'index.html')
+        self.assertTemplateUsed(response, 'services/index.html')
 
 
 class TestLogout(PrepareTestUser):
@@ -31,4 +31,4 @@ class TestLogout(PrepareTestUser):
         response = self.client.get('/logout', follow=True)
         self.assertNotIn(SESSION_KEY, self.client.session)
         self.assertEqual(response.status_code, HTTPStatus.OK)
-        self.assertTemplateUsed(response, 'index.html')
+        self.assertTemplateUsed(response, 'services/index.html')

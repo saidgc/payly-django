@@ -8,7 +8,7 @@ class TestServices(PrepareTestFirestore):
     def test_view_service(self):
         response = self.client.get('/services', follow=True)
         self.assertEqual(response.status_code, HTTPStatus.OK)
-        self.assertTemplateUsed(response, 'index.html')
+        self.assertTemplateUsed(response, 'services/index.html')
 
     def test_view_pay_service(self):
         payload = {
@@ -16,7 +16,7 @@ class TestServices(PrepareTestFirestore):
         }
         response = self.client.post('/pay', payload, follow=True)
         self.assertEqual(response.status_code, HTTPStatus.OK)
-        self.assertTemplateUsed(response, 'pay_service.html')
+        self.assertTemplateUsed(response, 'services/pay_service.html')
 
     def test_view_pay_service_without_service_id(self):
         payload = {
@@ -24,4 +24,4 @@ class TestServices(PrepareTestFirestore):
         }
         response = self.client.post('/pay', payload, follow=True)
         self.assertEqual(response.status_code, HTTPStatus.OK)
-        self.assertTemplateUsed(response, 'index.html')
+        self.assertTemplateUsed(response, 'services/index.html')

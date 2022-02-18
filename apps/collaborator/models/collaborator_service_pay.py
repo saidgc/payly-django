@@ -1,7 +1,7 @@
 from django.db import models
 
 from apps.account.models import PaylyUser
-from services.models.base_service import Service
+from apps.services.models.base_service import Service
 
 
 class Customer(models.Model):
