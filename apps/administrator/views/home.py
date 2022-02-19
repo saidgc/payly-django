@@ -1,5 +1,7 @@
 from django.shortcuts import redirect, render
 
+from apps.services.models.service import Service
+
 
 def home(request):
     if not request.user.is_authenticated:
@@ -16,10 +18,12 @@ def services(request):
     if not request.user.is_authenticated:
         return redirect('login')
 
+    all_services = Service.objects.all()
+
     return render(
         request=request,
-        template_name='administrator/home/../../../templates/administrator/services/services.html',
-        context={'segment': 'services'},
+        template_name='administrator/services/services.html',
+        context={'services': all_services},
     )
 
 
@@ -29,7 +33,7 @@ def create_services(request):
 
     return render(
         request=request,
-        template_name='administrator/home/../../../templates/administrator/services/create_service.html',
+        template_name='administrator/services/create_service.html',
         context={'segment': 'services'},
     )
 

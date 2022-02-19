@@ -1,8 +1,6 @@
 from django.db import models
 
-
-class ServiceType(models.Model):
-    name = models.CharField('Tipo de servicio', max_length=100)
+from apps.services.models.service_type import ServiceType
 
 
 class Service(models.Model):
