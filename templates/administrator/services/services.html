@@ -1,6 +1,6 @@
 {% extends 'administrator/layouts/base.html' %}
 
-{% block title %} UI Tables {% endblock title %}
+{% block title %} Todos los servicios {% endblock title %}
 
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}{% endblock stylesheets %}
@@ -15,19 +15,17 @@
                     <div class="card-header pb-0">
                         <div class="d-lg-flex">
                             <div>
-                                <h5 class="mb-0">All Products</h5>
-                                <p class="text-sm mb-0">
-                                    A lightweight, extendable, dependency-free javascript HTML table plugin.
-                                </p>
+                                <h5 class="mb-0">Todos los servicios</h5>
                             </div>
                             <div class="ms-auto my-auto mt-lg-0 mt-4">
                                 <div class="ms-auto my-auto">
-                                    <a href="./new-product.html" class="btn bg-gradient-primary btn-sm mb-0"
-                                       target="_blank">+&nbsp; New Product</a>
-                                    <button type="button" class="btn btn-outline-primary btn-sm mb-0"
+                                    <a href="{% url 'administrator_services_create' %}"
+                                       class="btn bg-gradient-dark btn-sm mb-0"
+                                       target="_blank">+&nbsp; Nuevo servicio</a>
+                                    <button type="button" class="btn btn-outline-dark btn-sm mb-0"
                                             data-bs-toggle="modal"
                                             data-bs-target="#import">
-                                        Import
+                                        Importar
                                     </button>
                                     <div class="modal fade" id="import" tabindex="-1" aria-hidden="true">
                                         <div class="modal-dialog mt-lg-10">
@@ -60,9 +58,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button class="btn btn-outline-primary btn-sm export mb-0 mt-sm-0 mt-1"
+                                    <button class="btn btn-outline-dark btn-sm export mb-0 mt-sm-0 mt-1"
                                             data-type="csv"
-                                            type="button" name="button">Export
+                                            type="button" name="button">Exportar
                                     </button>
                                 </div>
                             </div>
@@ -73,11 +71,11 @@
                             <table class="table table-flush" id="products-list">
                                 <thead class="thead-light">
                                 <tr>
-                                    <th>Product</th>
-                                    <th>Category</th>
-                                    <th>Price</th>
+                                    <th>Servicio</th>
+                                    <th>Categoría</th>
+                                    <th>Descuento</th>
                                     <th>SKU</th>
-                                    <th>Quantity</th>
+                                    <th>-</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -631,7 +629,10 @@
             const dataTableSearch = new simpleDatatables.DataTable("#products-list", {
                 searchable: true,
                 fixedHeight: false,
-                perPage: 7
+                perPage: 5,
+                labels: {
+                    placeholder: "Buscar", // The search input placeholder
+                }
             });
 
             document.querySelectorAll(".export").forEach(function (el) {
