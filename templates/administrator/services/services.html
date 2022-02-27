@@ -92,15 +92,19 @@
                                                 <img class="w-10 ms-3"
                                                      src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/adidas-hoodie.jpg"
                                                      alt="hoodie">
-                                                <h6 class="ms-3 my-auto">service.name</h6>
+                                                <h6 class="ms-3 my-auto">{{ service.name }}</h6>
                                             </div>
                                         </td>
-                                        <td class="text-sm">service.cat</td>
-                                        <td class="text-sm">service.discount</td>
-                                        <td class="text-sm">service.sku</td>
+                                        <td class="text-sm">{{ service.service_type }}</td>
+                                        <td class="text-sm">{{ service.base_discount }}</td>
+                                        <td class="text-sm">{{ service.SKU }}</td>
                                         <td class="text-sm">remove.this.column</td>
                                         <td>
-                                            <span class="badge badge-danger badge-sm">service.status</span>
+                                            {% if service.status %}
+                                                <span class="badge badge-success badge-sm">Activo</span>
+                                            {% else %}
+                                                <span class="badge badge-danger badge-sm">Desactivado</span>
+                                            {% endif %}
                                         </td>
                                         <td class="text-sm">
                                             <a href="javascript:;" data-bs-toggle="tooltip"

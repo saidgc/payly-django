@@ -28,7 +28,9 @@
                     <!--form panels-->
                     <div class="row">
                         <div class="col-12 col-lg-8 m-auto">
-                            <form class="multisteps-form__form mb-8">
+                            <form class="multisteps-form__form mb-8 dropzone" method="post" action="./"
+                                  id="service-form">
+                                {% csrf_token %}
                                 <!--single form panel-->
                                 <div class="card multisteps-form__panel p-3 border-radius-xl bg-white js-active"
                                      data-animation="FadeIn">
@@ -38,17 +40,16 @@
                                             <div class="col-12 col-sm-6">
                                                 <label>Nombre</label>
                                                 <input class="multisteps-form__input form-control" type="text"
+                                                       name="name" maxlength="100" required="" id="id_name"
                                                        placeholder="eg. Telmex"/>
                                             </div>
                                             <div class="col-12 col-sm-6">
                                                 <label>Categoría</label>
-                                                <select class="form-control" name="choices-category"
-                                                        id="choices-category">
-                                                    <option value="Choice 1" selected="">Telefonía</option>
-                                                    <option value="Choice 2">Real Estate</option>
-                                                    <option value="Choice 3">Electronics</option>
-                                                    <option value="Choice 4">Furniture</option>
-                                                    <option value="Choice 5">Others</option>
+                                                <select class="form-control" name="service_type" required=""
+                                                        id="service_type">
+                                                    {% for choice_id, choice_label in service_form.service_type.field.choices %}
+                                                        <option value="{{ choice_id }}">{{ choice_label }}</option>
+                                                    {% endfor %}
                                                 </select>
                                             </div>
 
@@ -59,9 +60,11 @@
                                                 <p class="form-text text-muted text-xs ms-1 d-inline">
                                                     (optional)
                                                 </p>
-                                                <div id="edit-deschiption" class="h-50">
+                                                <div id="edit-description" class="h-50">
                                                     <p>Some initial <strong>bold</strong> text</p>
                                                 </div>
+                                                <textarea style="display:none;" name="description" cols="40" rows="10"
+                                                          maxlength="1000" id="id_description"></textarea>
                                             </div>
                                         </div>
                                         <div class="button-row d-flex mt-5">
@@ -79,8 +82,7 @@
                                         <div class="row mt-3">
                                             <div class="col-12">
                                                 <label>Icono del servicio</label>
-                                                <div action="/file-upload" class="form-control dropzone"
-                                                     id="productImg"></div>
+                                                <div class="form-control" id="serviceImg"></div>
                                             </div>
                                         </div>
                                         <div class="button-row d-flex mt-4">
@@ -102,17 +104,19 @@
                                             <div class="col-3">
                                                 <label>Descuento</label>
                                                 <input class="multisteps-form__input form-control" type="number"
-                                                       placeholder="20.00" min="0" max="100"/>
+                                                       name="base_discount" step="0.01" required="" placeholder="20.00"
+                                                       min="0" max="100"/>
                                             </div>
                                             <div class="col-4">
                                                 <label for="choices-currency">Moneda</label>
-                                                <select class="form-control" name="choices-sizes" id="choices-currency">
+                                                <select name="currency" class="form-control" id="choices-currency">
                                                     <option value="Choice 1" selected="">MXN</option>
                                                 </select>
                                             </div>
                                             <div class="col-5">
                                                 <label>SKU</label>
-                                                <input class="multisteps-form__input form-control" type="text"
+                                                <input name="SKU" class="multisteps-form__input form-control"
+                                                       type="text"
                                                        placeholder="71283476591"/>
                                             </div>
                                         </div>
@@ -120,8 +124,8 @@
                                             <button class="btn bg-gradient-secondary mb-0 js-btn-prev" type="button"
                                                     title="Anterior">Anterior
                                             </button>
-                                            <button class="btn bg-gradient-dark ms-auto mb-0" type="button"
-                                                    title="Crear">Crear
+                                            <button class="btn bg-gradient-dark ms-auto mb-0" type="submit"
+                                                    title="Crear" id="submit_form">Crear
                                             </button>
                                         </div>
                                     </div>
@@ -148,14 +152,14 @@
 
 
     <script>
-        if (document.getElementById('edit-deschiption')) {
-            const quill = new Quill('#edit-deschiption', {
+        if (document.getElementById('edit-description')) {
+            const quill = new Quill('#edit-description', {
                 theme: 'snow' // Specify theme in configuration
             })
         }
 
-        if (document.getElementById('choices-category')) {
-            const element = document.getElementById('choices-category')
+        if (document.getElementById('service_type')) {
+            const element = document.getElementById('service_type')
             const example = new Choices(element, {
                 searchEnabled: false
             })
@@ -174,6 +178,10 @@
                 searchEnabled: false
             })
         }
+        document.getElementById('service-form').addEventListener('submit', function (e) {
+            document.getElementById('id_description').value = document.getElementById('edit-description').children[0].innerHTML
+
+        })
 
         if (document.getElementById('choices-tags')) {
             const tags = document.getElementById('choices-tags');
