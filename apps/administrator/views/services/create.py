@@ -10,9 +10,10 @@ def create_services(request):
 
     if request.method == 'POST':
         request_form = ServiceForm(request.POST)
-        service = Service(**request_form.cleaned_data)
-        service.save()
-        redirect('administrator_services_show_all')
+        if request_form.is_valid():
+            service = Service(**request_form.cleaned_data)
+            service.save()
+            redirect('administrator_services_show_all')
 
     return render(
         request=request,

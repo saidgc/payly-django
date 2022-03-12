@@ -38,6 +38,7 @@ addEvent($inputAmount, "keyup", function (e) {
     }
 });
 
+
 addEvent($inputService, "keyup", function (e) { check() });
 addEvent($inputService, "paste", function (e) { check() });
 
